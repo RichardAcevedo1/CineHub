@@ -1,5 +1,6 @@
 package com.cinehub;
 
+import com.cinehub.exception.InvalidMovieException;
 import com.cinehub.model.Movie;
 import com.cinehub.service.MovieService;
 
@@ -17,7 +18,7 @@ public class CineHubApplication {
         );
 
         movieService.addMovie(
-                new Movie("Alien", 1979)
+                new Movie("Alien", 1989)
         );
 
         movieService.addMovie(
@@ -31,6 +32,15 @@ public class CineHubApplication {
         movieService.addMovie(
                 new Movie("Dune", 2021)
         );
+
+        try {
+            Movie movie = new Movie("A", 1999);
+            System.out.println("Película creada");
+        } catch(InvalidMovieException ime) {
+            System.out.println(
+                    "Error al crear la pelicula: " + ime.getMessage()
+            );
+        }
 
         for(Movie movie : movieService.getAllMovies()) {
             System.out.println(
