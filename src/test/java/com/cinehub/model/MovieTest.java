@@ -5,15 +5,14 @@ import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class MovieTest {
 
     @Test
     void shouldCreateValidMovie() {
 
-        Movie movie = new Movie("The Matrix", 1999);
+        Movie movie = new Movie(1L, "The Matrix", 1999, Genre.SCI_FI);
 
         assertEquals("The Matrix", movie.getTitle());
         assertEquals(1999, movie.getYear());
@@ -22,7 +21,7 @@ public class MovieTest {
     @Test
     void shouldAcceptMovieFrom1888() {
 
-        Movie movie = new Movie("A trip to the Moon", 1888);
+        Movie movie = new Movie(2L, "A trip to the Moon", 1888, Genre.DRAMA);
 
         assertEquals(1888, movie.getYear());
     }
@@ -32,7 +31,7 @@ public class MovieTest {
 
         assertThrows(
                 InvalidMovieException.class,
-                () -> new Movie("", 1999)
+                () -> new Movie(3L, "", 1999, Genre.ACTION)
         );
     }
 
@@ -41,7 +40,7 @@ public class MovieTest {
 
         assertThrows(
                 InvalidMovieException.class,
-                () -> new Movie("A", 1999)
+                () -> new Movie(4L, "A", 1999, Genre.COMEDY)
         );
     }
 
@@ -50,7 +49,7 @@ public class MovieTest {
 
         assertThrows(
                 InvalidMovieException.class,
-                () -> new Movie("The Matrix", 1800)
+                () -> new Movie(1L, "The Matrix", 1800, Genre.SCI_FI)
         );
     }
 
@@ -61,7 +60,7 @@ public class MovieTest {
 
         assertThrows(
                 InvalidMovieException.class,
-                () -> new Movie("The Matrix", futureYear)
+                () -> new Movie(1L, "The Matrix", futureYear, Genre.SCI_FI)
         );
     }
 
@@ -70,7 +69,60 @@ public class MovieTest {
 
         assertThrows(
                 InvalidMovieException.class,
-                () -> new Movie("  ", 1999)
+                () -> new Movie(5L, "  ", 1999, Genre.ACTION)
         );
+    }
+
+    @Test
+    void shouldConsiderMoviesWithSameIdEqual() {
+        Movie movie1 = new Movie(
+                1L,
+                "The Matrix",
+                1999,
+                Genre.SCI_FI
+        );
+
+        Movie movie2 = new Movie(
+                1L,
+                "The Matrix",
+                1999,
+                Genre.SCI_FI
+        );
+
+        assertEquals(movie1, movie2);
+    }
+
+    @Test
+    void shouldConsiderMoviesWithDifferentIdsNotEqual() {
+        Movie movie1 = new Movie(
+                1L,
+                "The Matrix",
+                1999,
+                Genre.SCI_FI
+        );
+
+        Movie movie2 = new Movie(
+                2L,
+                "The Matrix",
+                1999,
+                Genre.SCI_FI
+        );
+
+        assertNotEquals(movie1, movie2);
+    }
+
+    @Test
+    void shouldReturnCorrectMovieInformation() {
+        Movie movie = new Movie(
+                1L,
+                "Alien",
+                1979,
+                Genre.HORROR
+        );
+
+        assertEquals(1L, movie.getId());
+        assertEquals("Alien", movie.getTitle());
+        assertEquals(1979, movie.getYear());
+        assertEquals(Genre.HORROR, movie.getGenre());
     }
 }

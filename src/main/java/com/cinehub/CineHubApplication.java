@@ -1,6 +1,7 @@
 package com.cinehub;
 
 import com.cinehub.exception.InvalidMovieException;
+import com.cinehub.model.Genre;
 import com.cinehub.model.Movie;
 import com.cinehub.service.MovieService;
 
@@ -14,33 +15,25 @@ public class CineHubApplication {
         MovieService movieService = new MovieService();
 
         movieService.addMovie(
-                new Movie("The Matrix", 1999)
+                new Movie(1L, "The Matrix", 1999, Genre.SCI_FI)
         );
 
         movieService.addMovie(
-                new Movie("Alien", 1989)
+                new Movie(2L, "Alien", 1989, Genre.HORROR)
         );
 
         movieService.addMovie(
-                new Movie("Interstellar", 2014)
+                new Movie(3L, "Interstellar", 2014, Genre.SCI_FI)
         );
 
-        movieService.addMovie(
-                new Movie("Inception", 2010)
-        );
-
-        movieService.addMovie(
-                new Movie("Dune", 2021)
-        );
-
-        try {
-            Movie movie = new Movie("A", 1999);
-            System.out.println("Película creada");
-        } catch(InvalidMovieException ime) {
-            System.out.println(
-                    "Error al crear la pelicula: " + ime.getMessage()
-            );
-        }
+//        try {
+//            Movie movie = new Movie("A", 1999);
+//            System.out.println("Película creada");
+//        } catch(InvalidMovieException ime) {
+//            System.out.println(
+//                    "Error al crear la pelicula: " + ime.getMessage()
+//            );
+//        }
 
         for(Movie movie : movieService.getAllMovies()) {
             System.out.println(

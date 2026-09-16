@@ -1,5 +1,6 @@
 package com.cinehub.service;
 
+import com.cinehub.model.Genre;
 import com.cinehub.model.Movie;
 import org.junit.jupiter.api.Test;
 
@@ -13,7 +14,7 @@ public class MovieServiceTest {
 
         MovieService movieService = new MovieService();
 
-        Movie movie = new Movie("The Matrix", 1999);
+        Movie movie = new Movie(1L, "The Matrix", 1999, Genre.SCI_FI);
 
         movieService.addMovie(movie);
 
@@ -26,11 +27,11 @@ public class MovieServiceTest {
         MovieService movieService = new MovieService();
 
         movieService.addMovie(
-                new Movie("The Matrix", 1999)
+                new Movie(1L, "The Matrix", 1999, Genre.SCI_FI)
         );
 
         movieService.addMovie(
-                new Movie("Alien", 1979)
+                new Movie(2L, "Alien", 1979, Genre.HORROR)
         );
 
         var movies = movieService.getAllMovies();
@@ -46,15 +47,15 @@ public class MovieServiceTest {
         MovieService movieService = new MovieService();
 
         movieService.addMovie(
-                new Movie("The Matrix", 1999)
+                new Movie(1L, "The Matrix", 1999, Genre.SCI_FI)
         );
 
         movieService.addMovie(
-                new Movie("Inception", 2010)
+                new Movie(3L, "Inception", 2010, Genre.DRAMA)
         );
 
         movieService.addMovie(
-                new Movie("Interstellar", 2014)
+                new Movie(4L, "Interstellar", 2014, Genre.SCI_FI)
         );
 
         var movies = movieService.getMoviesByYear(2010);
@@ -69,11 +70,11 @@ public class MovieServiceTest {
         MovieService movieService = new MovieService();
 
         movieService.addMovie(
-                new Movie("The Matrix", 1999)
+                new Movie(1L, "The Matrix", 1999, Genre.SCI_FI)
         );
 
         movieService.addMovie(
-                new Movie("Inception", 2010)
+                new Movie(3L, "Inception", 2010, Genre.DRAMA)
         );
 
         var movies = movieService.searchByTitle("THE");
@@ -88,11 +89,11 @@ public class MovieServiceTest {
         MovieService movieService = new MovieService();
 
         movieService.addMovie(
-                new Movie("The Matrix", 1999)
+                new Movie(1L, "The Matrix", 1999, Genre.SCI_FI)
         );
 
         movieService.addMovie(
-                new Movie("Inception", 2010)
+                new Movie(3L, "Inception", 2010, Genre.DRAMA)
         );
 
         var movie = movieService.findByTitle("Inception");
@@ -107,7 +108,7 @@ public class MovieServiceTest {
         MovieService movieService = new MovieService();
 
         movieService.addMovie(
-                new Movie("The Matrix", 1999)
+                new Movie(1L, "The Matrix", 1999, Genre.SCI_FI)
         );
 
         var movie = movieService.findByTitle("Inception");
@@ -121,11 +122,11 @@ public class MovieServiceTest {
         MovieService movieService = new MovieService();
 
         movieService.addMovie(
-                new Movie("The Matrix", 1999)
+                new Movie(1L, "The Matrix", 1999, Genre.SCI_FI)
         );
 
         movieService.addMovie(
-                new Movie("Alien", 1979)
+                new Movie(2L, "Alien", 1979, Genre.HORROR)
         );
 
         var movies = movieService.getMoviesByYear(2020);
@@ -139,19 +140,19 @@ public class MovieServiceTest {
         MovieService movieService = new MovieService();
 
         movieService.addMovie(
-                new Movie("The Matrix", 1999)
+                new Movie(1L, "The Matrix", 1999, Genre.SCI_FI)
         );
 
         movieService.addMovie(
-                new Movie("Alien", 1979)
+                new Movie(2L, "Alien", 1979, Genre.HORROR)
         );
 
         movieService.addMovie(
-                new Movie("Inception", 2010)
+                new Movie(3L, "Inception", 2010, Genre.DRAMA)
         );
 
         movieService.addMovie(
-                new Movie("Interstellar", 2014)
+                new Movie(4L, "Interstellar", 2014, Genre.SCI_FI)
         );
 
         var movies = movieService.getAllMovies();
@@ -167,11 +168,11 @@ public class MovieServiceTest {
         MovieService movieService = new MovieService();
 
         movieService.addMovie(
-                new Movie("The Matrix", 1999)
+                new Movie(1L, "The Matrix", 1999, Genre.SCI_FI)
         );
 
         movieService.addMovie(
-                new Movie("Alien", 1979)
+                new Movie(2L, "Alien", 1979, Genre.HORROR)
         );
 
         var movies = movieService.searchByTitle("xyz");
