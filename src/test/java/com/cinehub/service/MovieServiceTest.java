@@ -4,8 +4,9 @@ import com.cinehub.model.Genre;
 import com.cinehub.model.Movie;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class MovieServiceTest {
 
@@ -178,5 +179,22 @@ public class MovieServiceTest {
         var movies = movieService.searchByTitle("xyz");
 
         assertTrue(movies.isEmpty());
+    }
+
+    @Test
+    void shouldNotAllowExternalModificationOfMovies() {
+        MovieService movieService = new MovieService();
+
+        movieService.addMovie(
+                new Movie(1L, "The Matrix", 1999, Genre.SCI_FI)
+        );
+
+        List<Movie> movies = movieService.getAllMovies();
+
+        assertThrows(
+                UnsupportedOperationException.class,
+                () -> movies.clear()
+        );
+
     }
 }

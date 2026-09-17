@@ -9,14 +9,14 @@ import java.util.Optional;
 
 public class MovieService {
 
-    private List<Movie> movies = new ArrayList<>();
+    private final List<Movie> movies = new ArrayList<>();
 
     public void addMovie(Movie movie) {
         movies.add(movie);
     }
 
     public List<Movie> getAllMovies() {
-        return movies;
+        return List.copyOf(movies);
     }
 
     public List<Movie> getMoviesAfterYear(int year) {
