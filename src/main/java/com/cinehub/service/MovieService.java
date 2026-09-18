@@ -1,12 +1,13 @@
 package com.cinehub.service;
 
 import com.cinehub.model.Movie;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import java.util.Optional;
 
+@Service
 public class MovieService {
 
     private final List<Movie> movies = new ArrayList<>();
@@ -47,5 +48,9 @@ public class MovieService {
         return movies.stream()
                 .filter(movie -> movie.getYear() == year)
                 .toList();
+    }
+
+    public int getMovieCount() {
+        return movies.size();
     }
 }
