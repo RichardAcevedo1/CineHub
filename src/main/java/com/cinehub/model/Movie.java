@@ -10,6 +10,8 @@ public class Movie {
     private int year;
     private Genre genre;
 
+    public Movie(){}
+
     public Movie(Long id, String title, int year, Genre genre) {
 
         if(title == null || title.isBlank()) {

@@ -5,6 +5,7 @@ import com.cinehub.model.Movie;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -196,5 +197,32 @@ public class MovieServiceTest {
                 () -> movies.clear()
         );
 
+    }
+
+    @Test
+    void shouldFindMovieById() {
+        MovieService movieService = new MovieService();
+
+        movieService.addMovie(
+                new Movie(1L, "Avatar", 2015, Genre.SCI_FI)
+        );
+
+        Optional<Movie> movie = movieService.findById(1L);
+
+        assertEquals(1, movie.isPresent());
+        assertEquals("Avatar", movie.get().getTitle());
+    }
+
+    @Test
+    void shouldReturnEmptyWhenMovieIdDoesNotExist() {
+        MovieService movieService = new MovieService();
+
+        movieService.addMovie(
+                new Movie(1L, "Avatar", 2015, Genre.SCI_FI)
+        );
+
+        Optional<Movie> movie = movieService.findById(999L);
+
+        assertTrue(movie.isEmpty());
     }
 }

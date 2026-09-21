@@ -2,8 +2,8 @@ package com.cinehub.controller;
 
 import com.cinehub.model.Movie;
 import com.cinehub.service.MovieService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -24,5 +24,18 @@ public class MovieController {
     @GetMapping("/movies/count")
     public int getMovieCount() {
         return movieService.getMovieCount();
+    }
+
+    @GetMapping("/movies/{id}")
+    public ResponseEntity<Movie> getMovieById(@PathVariable Long id) {
+        return movieService.findById(id)
+                .map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity.notFound().build());
+    }
+
+    @PostMapping("/movies")
+    public Movie addMovie(@RequestBody Movie movie) {
+        movieService.addMovie(movie);
+        return movie;
     }
 }

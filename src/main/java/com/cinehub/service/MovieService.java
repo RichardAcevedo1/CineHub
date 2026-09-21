@@ -53,4 +53,10 @@ public class MovieService {
     public int getMovieCount() {
         return movies.size();
     }
+
+    public Optional<Movie> findById(Long id) {
+        return movies.stream()
+                .filter(movie -> movie.getId().equals(id))
+                .findFirst();
+    }
 }
