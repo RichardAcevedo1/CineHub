@@ -1,0 +1,15 @@
+services:
+  postgres:
+    image: postgres:18
+    container_name: cinehub-postgres
+    environment:
+      POSTGRES_DB: cinehub
+      POSTGRES_USER: cinehub
+      POSTGRES_PASSWORD: cinehub
+    ports:
+      - "5432:5432"
+    volumes:
+      - cinehub_postgres_data:/var/lib/postgresql
+
+volumes:
+  cinehub_postgres_data:

@@ -1,16 +1,46 @@
 package com.cinehub.model;
 
 import com.cinehub.exception.InvalidMovieException;
+import jakarta.persistence.*;
 
 import java.time.LocalDate;
 
+@Entity
 public class Movie {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String title;
+
     private int year;
+
+    @Enumerated(EnumType.STRING)
     private Genre genre;
 
-    public Movie(){}
+    protected Movie(){}
+
+    public Movie(String title, int year, Genre genre) {
+
+        if(title == null || title.isBlank()) {
+            throw new InvalidMovieException("El titulo no puede estar vacío");
+        }
+
+        if(title.length() < 2) {
+            throw new InvalidMovieException(
+                    "El título debe tener al menos 2 caracteres"
+            );
+        }
+
+        if(year < 1888 || year > LocalDate.now().getYear()) {
+            throw new InvalidMovieException("El año no es válido");
+        }
+
+        this.title = title;
+        this.year = year;
+        this.genre = genre;
+    }
 
     public Movie(Long id, String title, int year, Genre genre) {
 

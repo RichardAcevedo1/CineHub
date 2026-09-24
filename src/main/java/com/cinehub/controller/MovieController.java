@@ -22,7 +22,7 @@ public class MovieController {
     }
 
     @GetMapping("/movies/count")
-    public int getMovieCount() {
+    public long getMovieCount() {
         return movieService.getMovieCount();
     }
 
