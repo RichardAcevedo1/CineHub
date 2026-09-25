@@ -23,45 +23,11 @@ public class Movie {
 
     public Movie(String title, int year, Genre genre) {
 
-        if(title == null || title.isBlank()) {
-            throw new InvalidMovieException("El titulo no puede estar vacío");
-        }
-
-        if(title.length() < 2) {
-            throw new InvalidMovieException(
-                    "El título debe tener al menos 2 caracteres"
-            );
-        }
-
-        if(year < 1888 || year > LocalDate.now().getYear()) {
-            throw new InvalidMovieException("El año no es válido");
-        }
-
         this.title = title;
         this.year = year;
         this.genre = genre;
-    }
 
-    public Movie(Long id, String title, int year, Genre genre) {
-
-        if(title == null || title.isBlank()) {
-            throw new InvalidMovieException("El titulo no puede estar vacío");
-        }
-
-        if(title.length() < 2) {
-            throw new InvalidMovieException(
-                    "El título debe tener al menos 2 caracteres"
-            );
-        }
-
-        if(year < 1888 || year > LocalDate.now().getYear()) {
-            throw new InvalidMovieException("El año no es válido");
-        }
-
-        this.id = id;
-        this.title = title;
-        this.year = year;
-        this.genre = genre;
+        validate();
     }
 
     public Long getId() {
@@ -106,6 +72,23 @@ public class Movie {
     @Override
     public int hashCode() {
         return id != null ? id.hashCode() : 0;
+    }
+
+    public void validate() {
+
+        if(title == null || title.isBlank()) {
+            throw new InvalidMovieException("El titulo no puede estar vacío");
+        }
+
+        if(title.length() < 2) {
+            throw new InvalidMovieException(
+                    "El título debe tener al menos 2 caracteres"
+            );
+        }
+
+        if(year < 1888 || year > LocalDate.now().getYear()) {
+            throw new InvalidMovieException("El año no es válido");
+        }
     }
 }
 

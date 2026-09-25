@@ -2,8 +2,40 @@ POST http://localhost:8080/movies
 Content-Type: application/json
 
 {
-  "id": 5,
   "title": "Inception",
   "year": 2010,
   "genre": "DRAMA"
 }
+
+###
+POST http://localhost:8080/movies
+Content-Type: application/json
+
+{
+"title": "",
+"year": 2020,
+"genre": "DRAMA"
+}
+
+###
+POST http://localhost:8080/movies
+Content-Type: application/json
+
+{
+  "title": "A",
+  "year": 2020,
+  "genre": "DRAMA"
+}
+
+###
+POST http://localhost:8080/movies
+Content-Type: application/json
+
+{
+  "title": "Avatar",
+  "year": 3000,
+  "genre": "SCI_FI"
+}
+
+###
+GET http://localhost:8080/movies

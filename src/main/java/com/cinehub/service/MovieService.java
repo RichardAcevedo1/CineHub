@@ -18,6 +18,7 @@ public class MovieService {
     }
 
     public Movie addMovie(Movie movie) {
+        movie.validate();
         return movieRepository.save(movie);
     }
 
